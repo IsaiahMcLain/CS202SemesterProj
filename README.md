@@ -1,5 +1,8 @@
 # CS-202-Semester-Project-F21
 
+![.wav format](http://soundfile.sapp.org/doc/WaveFormat/wav-sound-format.gif)
+![.wav example](http://soundfile.sapp.org/doc/WaveFormat/wave-bytes.gif)
+
 
 # Contributors
 
