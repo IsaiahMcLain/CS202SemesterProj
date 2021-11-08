@@ -1,16 +1,20 @@
 #ifndef WAV_H
 #define WAV_H
 #include <string>
+#include <fstream>
+#include <iostream>
+
 class WAV {
 
 private:
+       char metaTmp[44]; 
   //Header
-  std::string riff; //should contain "RIFF" notice all caps
-  int wavSize;
-  std::string wave; //should contain "WAVE" notice all caps
+  char riff[4]; //should contain "RIFF" notice all caps
+  //int wavSize;
+  char wave[4]; //should contain "WAVE" notice all caps
 
   //Format
-  std::string fmt; //should contain "fmt " notice trailing space
+  char fmt[4]; //should contain "fmt " notice trailing space
   int fmtSize;
   short audioFmt;
   short numChannels;
@@ -20,11 +24,14 @@ private:
   short bitDepth;
 
   //Data
-  std::string data; //should contain "data"
+  char data[4]; //should contain "data"
   int dataBytes;
   //std::string bytes; //we should make sure to allocate enough memory after we get dataBytes
 public:
-  WAV(std::string, int, std::string, std::string, int, short, short, int, int, short, short, std::string, int);
+  int wavSize;
+  WAV(std::string);
+  //WAV(std::string, int, std::string, std::string, int, short, short, int, int, short, short, std::string, int);
+  const char* getMetaTmp() const;
   int getWavSize() const;
   int getFmtSize() const;
   int getAudioFmt() const;
