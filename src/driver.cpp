@@ -8,11 +8,11 @@ std::ostream &operator<<(std::ostream &output, const WAV &wav) {
         return output;
 }
 
-void printHex(const char * hex) {
-        for (int x = 0; x < 44; x++) {
-                if (x % 4 == 0)
+void printHex(const unsigned char * hex, int number) {
+        for (int x = 0; x < number; x++) {
+                if (x % 8 == 0)
                         printf("\n");
-                printf("%x-%c\t", hex[x], hex[x]);
+                printf("%x\t", hex[x]);
         }
         return;
 }
@@ -21,9 +21,9 @@ int main()
 {
 
         try {
-                WAV wav1("sampleFiles/sample1MB.wav");
+                WAV wav1("sampleFiles/sample5MB.wav");
                 std::cout << wav1;
-                printHex(wav1.getMetaTmp());
+                printHex(wav1.getDataChunk(), wav1.getDataBytes());
         } catch(std::string e) {
                 std::cout << e << std::endl;
         }

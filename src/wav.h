@@ -7,7 +7,8 @@
 class WAV {
 
 private:
-       char metaTmp[44]; 
+        unsigned char * dataChunk;
+        unsigned char metaTmp[44]; 
   //Header
   char riff[4]; //should contain "RIFF" notice all caps
   //int wavSize;
@@ -31,7 +32,8 @@ public:
   int wavSize;
   WAV(std::string);
   //WAV(std::string, int, std::string, std::string, int, short, short, int, int, short, short, std::string, int);
-  const char* getMetaTmp() const;
+  const unsigned char* getDataChunk() const;
+  const unsigned char* getMetaTmp() const;
   int getWavSize() const;
   int getFmtSize() const;
   int getAudioFmt() const;

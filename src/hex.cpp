@@ -1,6 +1,6 @@
 #include "hex.h"
 #include <iostream>
-int cptod (const char *  orig, int start, int end) {
+int cptod (const unsigned char *  orig, int start, int end) {
         int output = 0;
         for (int x = start; x < end; x ++) {
 

@@ -25,8 +25,7 @@
 WAV::WAV(const std::string fileDir) {
         std::ifstream file (fileDir, std::ifstream::binary | std::ifstream::in);
         if (file.is_open()){
-                file.read(metaTmp, 44);
-                file.close();
+                file.read((char*)metaTmp, 44);
         }
         int x = 0;
         for (; x < 4; x++) {
@@ -50,9 +49,14 @@ WAV::WAV(const std::string fileDir) {
         WAV::smplAlignment = cptod(metaTmp, 32, 34);
         WAV::bitDepth = cptod(metaTmp, 34, 36);
         WAV::dataBytes = cptod(metaTmp, 40, 44);
-}
-
-const char * WAV::getMetaTmp() const {return metaTmp;}
+        if (file.is_open()) {
+                dataChunk = new unsigned char[WAV::dataBytes];
+                file.read((char*)WAV::dataChunk, WAV::dataBytes);
+                file.close();
+        }
+}       
+const unsigned char * WAV::getDataChunk() const {return dataChunk;}
+const unsigned char * WAV::getMetaTmp() const {return metaTmp;}
 int WAV::getWavSize() const {return wavSize;}
 int WAV::getFmtSize() const {return fmtSize;}
 int WAV::getAudioFmt() const {return audioFmt;}
