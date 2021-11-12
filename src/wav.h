@@ -33,6 +33,7 @@ private:
 public:
   WAV();
   bool loadData(std::string);
+  bool writeData(std::string);
   wav_meta getMetaData() const;
   uint16_t* getData() const;
 };

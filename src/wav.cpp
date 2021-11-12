@@ -18,6 +18,21 @@ bool WAV::loadData(std::string filePath) {
         }
 }
 
+bool WAV::writeData(std::string filePath) {
+        int headerSize = sizeof(metaData);
+        std::ofstream file(filePath, std::ios::binary | std::ios::out);
+        if (file.is_open()) {
+                file.write((char*)&metaData, headerSize);
+                /*for (size_t x = 0; x < 16; x++) {
+                        file.write((char*)data[x], sizeof(data[x]);
+                }*/
+                file.close();
+                return true;
+        } else {
+                return false;
+        }
+}
+
 wav_meta WAV::getMetaData() const{
         return metaData;
 }

@@ -35,6 +35,7 @@ int main()
                 WAV wav1;
                 wav1.loadData("sampleFiles/sample1MB.wav");
                 std::cout << wav1;
+                wav1.writeData("test.wav");
         } catch(std::string e) {
                 std::cout << e << std::endl;
         }
