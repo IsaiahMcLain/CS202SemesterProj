@@ -20,19 +20,21 @@ typedef struct  WAV_HEADER
     uint16_t        bitsPerSample;  
          
     uint8_t         subchunk2ID[4]; 
-    uint32_t        subchunk2Size;  
+    uint32_t        subchunk2Size;
   } wav_meta;
 
 
 class WAV {
 
-private:  
+private:
+  uint16_t * data;
   wav_meta metaData;
   
 public:
   WAV();
   bool loadData(std::string);
   wav_meta getMetaData() const;
+  uint16_t* getData() const;
 };
 
 #endif

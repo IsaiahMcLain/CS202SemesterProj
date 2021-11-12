@@ -4,6 +4,14 @@
 
 std::ostream &operator<<(std::ostream &output, const WAV &wav) {
         wav_meta metaData = wav.getMetaData();
+        for (int x = 0; x < metaData.subchunk2Size/(metaData.bitsPerSample/8); x++){
+                if (x % metaData.numOfChan == 0)
+                        std::cout << std::endl;
+                else
+                        std::cout << "\t";
+                std::cout << wav.getData()[x];
+        }
+        std::cout << std::endl;
         output << "Chunk ID:            " << metaData.RIFF[0] << metaData.RIFF[1] << metaData.RIFF[2]  << metaData.RIFF[3] << std::endl;
         output << "Chunk Size:          " << metaData.chunkSize << std::endl;
         output << "Format:              " << metaData.WAVE[0] << metaData.WAVE[1] << metaData.WAVE[2] << metaData.WAVE[3] << std::endl;

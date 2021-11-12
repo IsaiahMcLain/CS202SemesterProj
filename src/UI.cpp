@@ -12,7 +12,7 @@ void ruler(); //Temporary function for formatting purposes
 void inputValidation(int userChoice); 
 int choiceSelector(int userchoice); 
 void menuSelector(int userChoice); 
-
+/*
 int main()
 {
     ruler(); 
@@ -23,7 +23,7 @@ int main()
     
     return 0; 
 }
-
+*/
 //Presents introduction message to user 
 void startMessage(){
     std::cout << "Welcome to the CS202 Semester Project Digital Audio Workstation." << std::endl; 
