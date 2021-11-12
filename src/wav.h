@@ -4,45 +4,35 @@
 #include <fstream>
 #include <iostream>
 
+typedef struct  WAV_HEADER
+  {
+    uint8_t         RIFF[4];        
+    uint32_t        chunkSize;      
+    uint8_t         WAVE[4];        
+     
+    uint8_t         fmt[4];         
+    uint32_t        subchunk1Size;  
+    uint16_t        audioFormat;    
+    uint16_t        numOfChan;      
+    uint32_t        samplesPerSec;  
+    uint32_t        bytesPerSec;    
+    uint16_t        blockAlign;     
+    uint16_t        bitsPerSample;  
+         
+    uint8_t         subchunk2ID[4]; 
+    uint32_t        subchunk2Size;  
+  } wav_meta;
+
+
 class WAV {
 
-private:
-        unsigned char * dataChunk;
-        unsigned char metaTmp[44]; 
-  //Header
-  char riff[4]; //should contain "RIFF" notice all caps
-  //int wavSize;
-  char wave[4]; //should contain "WAVE" notice all caps
-
-  //Format
-  char fmt[4]; //should contain "fmt " notice trailing space
-  int fmtSize;
-  short audioFmt;
-  short numChannels;
-  int smplRate;
-  int byteRate;
-  short smplAlignment;
-  short bitDepth;
-
-  //Data
-  char data[4]; //should contain "data"
-  int dataBytes;
-  //std::string bytes; //we should make sure to allocate enough memory after we get dataBytes
+private:  
+  wav_meta metaData;
+  
 public:
-  int wavSize;
-  WAV(std::string);
-  //WAV(std::string, int, std::string, std::string, int, short, short, int, int, short, short, std::string, int);
-  const unsigned char* getDataChunk() const;
-  const unsigned char* getMetaTmp() const;
-  int getWavSize() const;
-  int getFmtSize() const;
-  int getAudioFmt() const;
-  int getNumChannels() const;
-  int getSmplRate() const;
-  int getByteRate() const;
-  int getSmplAlignment() const;
-  int getBitDepth() const;
-  int getDataBytes() const;
+  WAV();
+  bool loadData(std::string);
+  wav_meta getMetaData() const;
 };
 
 #endif
