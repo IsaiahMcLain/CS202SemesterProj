@@ -1,6 +1,6 @@
 #include "files.h"
 	/**
-	*creates file object
+	*creates the file object
 	**/
 	
 	Files::Files(){}
@@ -60,7 +60,7 @@
 	}
 
 	/**
-	* gets the newfile name and also checks if the name is an appropriate .wav file and that no files with the same name exist
+	* gets the newfile name and also checks wheither the name is appropriate for a .wav file and that there are no files with the same name
 	**/
 	
 	std::string Files::getnewfile(){
@@ -83,7 +83,7 @@
 	}
 
 	/**
-	* check for if its a proper .wav
+	* checks for if its a proper .wav file
 	**/
 	
 	bool Files::wavcheck(){
@@ -105,7 +105,7 @@
 	}
 	
 	/**
-	* checks if the there are any files with the same name
+	* checks if there are any files with the same name
 	**/
 	
 	bool Files::DupCheck(){
