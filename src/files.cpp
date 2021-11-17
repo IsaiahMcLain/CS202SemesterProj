@@ -1,6 +1,6 @@
 bool Argvcheck(char const* argv){
     
-std::string Filename(argv)
+std::string Filename(argv);
     
 std::ifstream myFile;
 
