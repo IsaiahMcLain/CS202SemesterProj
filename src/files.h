@@ -10,7 +10,7 @@
 #define NUM_ARGS 2
 
 /**
-* Files class - This class creates an object that handles all of the fil.io
+* Files class - This class creates an object that handles all of the file.io
 **/
 
 class Files {
@@ -39,10 +39,8 @@ public:
 	std::vector<std::string> filenames;
 	bool arg=0;
 	std::string newfile;
-	
 
 	Files();
-	
 
 	bool Argvcheck(int argc,char const* argv[]);
 	void Readfilenames(char const* argv[]);
