@@ -1,23 +1,22 @@
-#include <iostream> 
-#include <iomanip> 
-#include <string> 
-#include <fstream> 
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <fstream>
 #include <stdexcept>
-#include "files.h"
 #include "wav.h"
 
 //Prototypes
-void startMessage(); 
-std::string fileGatherer(std::string fileName);  
-void menu();  
+void startMessage();
+std::string fileGatherer(std::string fileName);
+void menu();
 //void ruler(); //Temporary function for formatting purposes
-void inputValidation(int userChoice); 
-int choiceSelector(int userchoice); 
-void menuSelector(int userChoice); 
+void inputValidation(int userChoice);
+int choiceSelector(int userchoice);
+void menuSelector(int userChoice);
 
 //Global Constants
-const int minMenuChoice = 1; 
-const int maxMenuChoice = 5; 
+const int minMenuChoice = 1;
+const int maxMenuChoice = 5;
 
 std::ostream &operator<<(std::ostream &output, const WAV &wav) {
         wav_meta metaData = wav.getMetaData();
@@ -48,47 +47,48 @@ std::ostream &operator<<(std::ostream &output, const WAV &wav) {
 int main(int argc, char* argv[])
 {
     if(argc == 2){
-        WAV wavfile1; 
-        wavfile1.loadData(argv[1]); 
-        fileGatherer(argv[1]); 
+        WAV wavfile1;
+        wavfile1.loadData(argv[1]);
+        //fileGatherer(argv[1]);
+        std::cout << "Command called where .wav was added" << std::endl;
     }
-   
+
     if(argc == 1){
-        std::cout << "Please enter the directory of your file below" << std::endl; 
-        Argvcheck(argv[0]); 
+        std::cout << "Please enter the directory of your file below" << std::endl;
+        //Argvcheck(argv[0]);
     }
-    
-//    ruler(); 
-    startMessage(); 
-    std::string fileName = " "; 
-    fileName = fileGatherer(fileName); 
-    menu(); 
-    
-    return 0; 
+
+//    ruler();
+    startMessage();
+    std::string fileName = " ";
+    //fileName = fileGatherer(fileName);
+    menu();
+
+    return 0;
 }
 
-//Presents introduction message to user 
+//Presents introduction message to user
 void startMessage(){
-    std::cout << "Welcome to the CS202 Semester Project Digital Audio Workstation." << std::endl; 
-    std::cout << std::setw(100) << std::setfill('-') << '-' << std::endl; 
-    std::cout << "This project enables you to edit your audio files." << std::endl; 
-    std::cout << "Please enter the name of your file below. It must be a .wav file." << std::endl; 
-    std::cout << "Please include .wav in your filename" << std::endl; 
-    std::cout << std::setw(100) << std::setfill('*') << '*' << std::endl; 
-    std::cout << std::endl; 
+    std::cout << "Welcome to the CS202 Semester Project Digital Audio Workstation." << std::endl;
+    std::cout << std::setw(100) << std::setfill('-') << '-' << std::endl;
+    std::cout << "This project enables you to edit your audio files." << std::endl;
+    std::cout << "Please enter the name of your file below. It must be a .wav file." << std::endl;
+    std::cout << "Please include .wav in your filename" << std::endl;
+    std::cout << std::setw(100) << std::setfill('*') << '*' << std::endl;
+    std::cout << std::endl;
 }
 
-//Calls upon file I/O function and module to handle the opening of a file 
+//Calls upon file I/O function and module to handle the opening of a file
 std::string fileGatherer(std::string fileName){
-  //fileName = function call 
-  return fileName = "test"; 
+  //fileName = function call
+  return fileName = "test";
 }
 
-//Presents the menu for the user to select an option from after they have entered their file name 
+//Presents the menu for the user to select an option from after they have entered their file name
 void menu(){
-    bool exit = true; 
-    int userChoice{}; 
-    std::string menu = 
+    bool exit = true;
+    int userChoice{};
+    std::string menu =
     "__________________________________________________________________________________________\n"
     "*                                             **Main Menu**                              *\n"
     "*  1. Display File Metadata                                                              *\n"
@@ -98,54 +98,54 @@ void menu(){
     "*  5. Quit Program                                                                       *\n"
     "* Please make a choice 1-5.                                                              *\n"
     "__________________________________________________________________________________________\n";
-    
+
     while(exit){
-        std::cout << menu << std::endl; 
-   
-        std::cin >> userChoice; 
-        inputValidation(userChoice); 
-    
+        std::cout << menu << std::endl;
+
+        std::cin >> userChoice;
+        inputValidation(userChoice);
+
             if(userChoice == maxMenuChoice) {
-                exit = false; 
-                break; 
+                exit = false;
+                break;
             }
             else {
-                menuSelector(userChoice); 
+                menuSelector(userChoice);
             }
         }
 }
 
-//Validates user input and makes sure that an integer on the menu was entered 
+//Validates user input and makes sure that an integer on the menu was entered
 void inputValidation(int userChoice){
     if(!isdigit(userChoice)){
             std::cin.clear();
-            std::cin.ignore(100, '\n'); 
+            std::cin.ignore(100, '\n');
         }
     if(userChoice < minMenuChoice || userChoice > maxMenuChoice){
-        std::cout << "Please enter a value between 1 and 5 from the menu." << std::endl; 
+        std::cout << "Please enter a value between 1 and 5 from the menu." << std::endl;
     }
 }
 
 //Function which includes actual menu selection logic and calls function based on case selected
 void menuSelector(int userChoice){
     switch(userChoice) {
-        case 1: 
-            std::cout << "Metadata function called" << std::endl; 
-            break; 
-        case 2: 
-            std::cout << "Normalize function called" << std::endl; 
-            break; 
-        case 3: 
-            std::cout << "Echo function called" << std::endl; 
-            break; 
-        case 4: 
-            std::cout << "Gain function called" << std::endl; 
-            break; 
+        case 1:
+            std::cout << "Metadata function called" << std::endl;
+            break;
+        case 2:
+            std::cout << "Normalize function called" << std::endl;
+            break;
+        case 3:
+            std::cout << "Echo function called" << std::endl;
+            break;
+        case 4:
+            std::cout << "Gain function called" << std::endl;
+            break;
     }
 }
 
 //Test purposes only
 //void ruler(){
-//    std::cout << "123456789012345678901234567890123456789012345678901234567890" << 
-//    "123456789012345678901234567890123456789012345678901234567890" << std::endl; 
+//    std::cout << "123456789012345678901234567890123456789012345678901234567890" <<
+//    "123456789012345678901234567890123456789012345678901234567890" << std::endl;
 //}
