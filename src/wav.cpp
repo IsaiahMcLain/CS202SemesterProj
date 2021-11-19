@@ -3,6 +3,16 @@
 
 WAV::WAV(){}
 
+bool WAV::gain(double gain) {
+        for (int x = 0; x < metaData.subchunk2Size; x+=2){
+                int16_t sample = dataBytes[x+1]*0x100+dataBytes[x];
+                sample = sample*gain;
+                dataBytes[x] = (uint8_t)sample;
+                dataBytes[x+1] = (sample >> 8);
+        }
+        return true;
+}
+
 bool WAV::loadData(std::string filePath) {
         int headerSize = sizeof(metaData);
         std::ifstream file(filePath, std::ios::binary | std::ios::in);

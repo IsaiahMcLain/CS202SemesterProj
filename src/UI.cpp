@@ -9,6 +9,7 @@
 void startMessage();
 std::string fileGatherer(std::string fileName);
 void menu();
+void debug(); //put code in here and run with "-d" flag to skip ui menu
 //void ruler(); //Temporary function for formatting purposes
 void inputValidation(int userChoice);
 int choiceSelector(int userchoice);
@@ -20,13 +21,6 @@ const int maxMenuChoice = 5;
 
 std::ostream &operator<<(std::ostream &output, const WAV &wav) {
         wav_meta metaData = wav.getMetaData();
-        for (size_t x = 0; x < metaData.subchunk2Size; x++){
-                if (x % 16 == 0)
-                        std::cout << std::endl;
-                else
-                        std::cout << "\t";
-                printf("%x", wav.getDataBytes()[x]);
-        }
         std::cout << std::endl;
         output << "Chunk ID:            " << metaData.RIFF[0] << metaData.RIFF[1] << metaData.RIFF[2]  << metaData.RIFF[3] << std::endl;
         output << "Chunk Size:          " << metaData.chunkSize << std::endl;
@@ -46,6 +40,10 @@ std::ostream &operator<<(std::ostream &output, const WAV &wav) {
 
 int main(int argc, char* argv[])
 {
+    if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'd'){
+        debug();
+        return 0;
+    }
     if(argc == 2){
         WAV wavfile1;
         wavfile1.loadData(argv[1]);
@@ -142,6 +140,14 @@ void menuSelector(int userChoice){
             std::cout << "Gain function called" << std::endl;
             break;
     }
+}
+
+void debug() {
+        WAV wav1;
+        wav1.loadData("sampleFiles/sample5MB.wav");
+        std::cout << wav1; 
+        wav1.gain(3);
+        wav1.writeData("test.wav");
 }
 
 //Test purposes only

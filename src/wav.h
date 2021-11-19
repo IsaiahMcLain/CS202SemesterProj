@@ -32,6 +32,7 @@ private:
   
 public:
   WAV();
+  bool gain(double);
   bool loadData(std::string);
   bool writeData(std::string);
   wav_meta getMetaData() const;
