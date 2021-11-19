@@ -27,7 +27,7 @@ typedef struct  WAV_HEADER
 class WAV {
 
 private:
-  uint32_t* data;
+  uint8_t* dataBytes;
   wav_meta metaData;
   
 public:
@@ -35,7 +35,7 @@ public:
   bool loadData(std::string);
   bool writeData(std::string);
   wav_meta getMetaData() const;
-  uint32_t* getData() const;
+  uint8_t* getDataBytes() const;
 };
 
 #endif

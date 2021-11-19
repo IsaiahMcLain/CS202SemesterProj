@@ -8,10 +8,9 @@ bool WAV::loadData(std::string filePath) {
         std::ifstream file(filePath, std::ios::binary | std::ios::in);
         if (file.is_open()) {
                 file.read((char*)&metaData, headerSize);
-                uint32_t buffer[metaData.subchunk2Size];
-                file.read((char*)buffer, metaData.subchunk2Size);
+                dataBytes = new uint8_t [metaData.subchunk2Size];
+                file.read((char*)dataBytes, metaData.subchunk2Size);
                 file.close();
-                data = buffer;
                 return true;
         } else {
                 return false;
@@ -23,9 +22,8 @@ bool WAV::writeData(std::string filePath) {
         std::ofstream file(filePath, std::ios::binary | std::ios::out);
         if (file.is_open()) {
                 file.write((char*)&metaData, headerSize);
-                for (int x = 0; x < metaData.subchunk2Size; x++) {
-                        file.write((char*)&data[x], sizeof(data[x]));
-                }
+                for (int x = 0; x < metaData.subchunk2Size; x++)
+                        file.write((char*)&dataBytes[x], 1);
                 file.close();
                 return true;
         } else {
@@ -37,6 +35,6 @@ wav_meta WAV::getMetaData() const{
         return metaData;
 }
 
-uint32_t* WAV::getData() const{
-        return data;
+uint8_t* WAV::getDataBytes() const{
+        return dataBytes;
 }

@@ -20,12 +20,12 @@ const int maxMenuChoice = 5;
 
 std::ostream &operator<<(std::ostream &output, const WAV &wav) {
         wav_meta metaData = wav.getMetaData();
-        for (size_t x = 0; x < metaData.subchunk2Size/(metaData.bitsPerSample/8); x++){
-                if (x % metaData.numOfChan == 0)
+        for (size_t x = 0; x < metaData.subchunk2Size; x++){
+                if (x % 16 == 0)
                         std::cout << std::endl;
                 else
                         std::cout << "\t";
-                std::cout << wav.getData()[x];
+                printf("%x", wav.getDataBytes()[x]);
         }
         std::cout << std::endl;
         output << "Chunk ID:            " << metaData.RIFF[0] << metaData.RIFF[1] << metaData.RIFF[2]  << metaData.RIFF[3] << std::endl;
