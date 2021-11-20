@@ -5,7 +5,8 @@
 
 
 # Contributors
-
--[Isaiah McLain](https://github.com/McLainIsaiah)
--[Keaton Clark](https://github.com/Keaton-Clark)
--[Kurt Stumpf]()
+| Author            | Contribution                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| -[Isaiah McLain](https://github.com/McLainIsaiah) |  |
+| -[Keaton Clark](https://github.com/Keaton-Clark) | Backend file i/o and file processing |
+| -[Kurt Stumpf](https://github.com/1102-Stumpf-Kurt) | |
