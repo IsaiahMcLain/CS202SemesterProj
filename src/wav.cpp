@@ -1,10 +1,33 @@
 #include "wav.h"
-
+#include <cstdlib>
 
 WAV::WAV(){}
 
+bool WAV::loPass(int16_t max) {
+        for (int x = 0; x < metaData.subchunk2Size; x += 2) {
+                int16_t sample = dataBytes[x+1]*0x100+dataBytes[x];
+                if (abs(sample) > abs(max)) {
+                        dataBytes[x] = (uint8_t)max;
+                        dataBytes[x+1] = (max >> 8);
+                }
+        }
+        return true;
+}
+
+bool WAV::normalize(int16_t max) {
+        int16_t maxValue = 0;
+        for (int x = 0; x < metaData.subchunk2Size; x += 2) {
+                int16_t sample = dataBytes[x+1]*0x100+dataBytes[x];
+                if (abs(sample) > abs(maxValue))
+                        maxValue = sample;
+        }
+        double scale = max/maxValue;
+        gain(scale);
+        return true;
+}
+
 bool WAV::gain(double gain) {
-        for (int x = 0; x < metaData.subchunk2Size; x+=2){
+        for (int x = 0; x < metaData.subchunk2Size; x += 2) {
                 int16_t sample = dataBytes[x+1]*0x100+dataBytes[x];
                 sample = sample*gain;
                 dataBytes[x] = (uint8_t)sample;

@@ -32,6 +32,8 @@ private:
   
 public:
   WAV();
+  bool loPass(int16_t);
+  bool normalize(int16_t);
   bool gain(double);
   bool loadData(std::string);
   bool writeData(std::string);
