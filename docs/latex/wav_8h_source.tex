@@ -1,0 +1,49 @@
+\hypertarget{wav_8h_source}{}\doxysection{wav.\+h}
+\label{wav_8h_source}\index{/home/kc/Documents/CS-\/202-\/Semester-\/Project-\/F21/src/wav.h@{/home/kc/Documents/CS-\/202-\/Semester-\/Project-\/F21/src/wav.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef WAV\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define WAV\_H}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{6 \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structWAV__HEADER}{WAV\_HEADER}}}
+\DoxyCodeLine{7 \{}
+\DoxyCodeLine{8     uint8\_t     RIFF[4];        }
+\DoxyCodeLine{9     uint32\_t    chunkSize;      }
+\DoxyCodeLine{10     uint8\_t     WAVE[4];        }
+\DoxyCodeLine{11      }
+\DoxyCodeLine{12     uint8\_t     fmt[4];     }
+\DoxyCodeLine{13     uint32\_t    subchunk1Size;  }
+\DoxyCodeLine{14     uint16\_t    audioFormat;    }
+\DoxyCodeLine{15     uint16\_t    numOfChan;      }
+\DoxyCodeLine{16     uint32\_t    samplesPerSec;  }
+\DoxyCodeLine{17     uint32\_t    bytesPerSec;    }
+\DoxyCodeLine{18     uint16\_t    blockAlign;     }
+\DoxyCodeLine{19     uint16\_t    bitsPerSample;  }
+\DoxyCodeLine{20      }
+\DoxyCodeLine{21     uint8\_t     subchunk2ID[4]; }
+\DoxyCodeLine{22     uint32\_t    subchunk2Size;}
+\DoxyCodeLine{23 \} \mbox{\hyperlink{structWAV__HEADER}{wav\_meta}};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{class }\mbox{\hyperlink{classWAV}{WAV}} \{}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{private}:}
+\DoxyCodeLine{29     uint8\_t* dataBytes;}
+\DoxyCodeLine{30     \mbox{\hyperlink{structWAV__HEADER}{wav\_meta}} metaData;}
+\DoxyCodeLine{31     }
+\DoxyCodeLine{32 \textcolor{keyword}{public}:}
+\DoxyCodeLine{33     \mbox{\hyperlink{classWAV}{WAV}}();}
+\DoxyCodeLine{34     \textcolor{keywordtype}{bool} loPass(int16\_t);}
+\DoxyCodeLine{35     \textcolor{keywordtype}{bool} normalize(int16\_t);}
+\DoxyCodeLine{41     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classWAV_ac52886f240fd21ab02063a0422c3757f}{gain}}(\textcolor{keywordtype}{double} \mbox{\hyperlink{classWAV_ac52886f240fd21ab02063a0422c3757f}{gain}});}
+\DoxyCodeLine{46     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classWAV_a190247765bac7c536736ebfe0f778cac}{loadData}}(std::string filePath);}
+\DoxyCodeLine{51     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classWAV_afcb6c21ccbe860e4e23ed8506d85eca8}{writeData}}(std::string filePath);}
+\DoxyCodeLine{52     \mbox{\hyperlink{structWAV__HEADER}{wav\_meta}} getMetaData() \textcolor{keyword}{const};}
+\DoxyCodeLine{53     uint8\_t* getDataBytes() \textcolor{keyword}{const};}
+\DoxyCodeLine{54 \};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

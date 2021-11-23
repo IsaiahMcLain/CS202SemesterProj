@@ -144,11 +144,11 @@ void menuSelector(int userChoice){
 
 void debug() {
         WAV wav1;
-        wav1.loadData("sampleFiles/sample5MB.wav");
+        wav1.loadData("sampleFiles/yes-8-bit-mono.wav");
         std::cout << wav1;
-        //wav1.gain(1.25); //dont go much over 3
+        //wav1.gain(.5); //dont go much over 3
         //wav1.normalize(0x9000); //the int passed in here is the value to normalize to or the max value you want 0xffff is max.. or maybe 0xefff
-        wav1.loPass(0x9000); //set the maximium value for any sample
+        wav1.loPass(0x99); //set the maximium value for any sample
         wav1.writeData("test.wav");
 }
 

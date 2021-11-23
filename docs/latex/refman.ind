@@ -1,0 +1,17 @@
+\begin{theindex}
+
+  \item {/home/kc/Documents/CS-\/202-\/Semester-\/Project-\/F21/src/wav.h}, 
+		\hyperpage{7}
+
+  \indexspace
+
+  \item {loadData}
+    \subitem {WAV}, \hyperpage{5}
+
+  \indexspace
+
+  \item {WAV}, \hyperpage{5}
+    \subitem {loadData}, \hyperpage{5}
+  \item {WAV\_HEADER}, \hyperpage{6}
+
+\end{theindex}
