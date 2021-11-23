@@ -7,7 +7,6 @@
 
 //Prototypes
 void startMessage();
-std::string fileGatherer(std::string fileName);
 void menu();
 void debug(); //put code in here and run with "-d" flag to skip ui menu
 //void ruler(); //Temporary function for formatting purposes
@@ -40,10 +39,10 @@ std::ostream &operator<<(std::ostream &output, const WAV &wav) {
 
 int main(int argc, char* argv[])
 {
-    if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'd'){
-        debug();
-        return 0;
-    }
+    // if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'd'){
+    //     debug();
+    //     return 0;
+    // }
     if(argc == 2){
         WAV wavfile1;
         wavfile1.loadData(argv[1]);
@@ -58,7 +57,7 @@ int main(int argc, char* argv[])
 
     //ruler();
     startMessage();
-    std::string fileName = " ";
+    // std::string fileName = " ";
     //fileName = fileGatherer(fileName);
     menu();
 
@@ -74,12 +73,6 @@ void startMessage(){
     std::cout << "Please include .wav in your filename" << std::endl;
     std::cout << std::setw(100) << std::setfill('*') << '*' << std::endl;
     std::cout << std::endl;
-}
-
-//Calls upon file I/O function and module to handle the opening of a file
-std::string fileGatherer(std::string fileName){
-  //fileName = function call
-  return fileName = "test";
 }
 
 //Presents the menu for the user to select an option from after they have entered their file name
@@ -127,9 +120,11 @@ void inputValidation(int userChoice){
 
 //Function which includes actual menu selection logic and calls function based on case selected
 void menuSelector(int userChoice){
+  WAV wav1; //For dedugging purposes will be moved
+  wav1.loadData("sampleFiles/yes-8-bit-mono.wav");
     switch(userChoice) {
         case 1:
-            // std::cout << wav1 << std::endl; Will need file loaded before this
+            std::cout << wav1;
             break;
         case 2:
             std::cout << "Echo function called" << std::endl;
@@ -139,18 +134,18 @@ void menuSelector(int userChoice){
             << std::endl;
 
             bool exit = true;
-            double gain_choice{};
+            double gainChoice{};
 
             while(exit){
-            cin >> gainChoice;
+            std::cin >> gainChoice;
               if(gainChoice > 3 || gainChoice < 0){
-                cout << "Please enter a value between 0 and 3" << std::endl;
+                std::cout << "Please enter a value between 0 and 3" << std::endl;
               }
               else{
                 exit = false;
               }
             }
-            gain(gainChoice);
+            wav1.gain(gainChoice);
             break;
     }
 }
