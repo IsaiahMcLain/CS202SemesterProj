@@ -17,7 +17,7 @@ void menuSelector(int userChoice);
 
 //Global Constants
 const int minMenuChoice = 1;
-const int maxMenuChoice = 5;
+const int maxMenuChoice = 4;
 
 std::ostream &operator<<(std::ostream &output, const WAV &wav) {
         wav_meta metaData = wav.getMetaData();
@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
         //Argvcheck(argv[0]);
     }
 
-//    ruler();
+    //ruler();
     startMessage();
     std::string fileName = " ";
     //fileName = fileGatherer(fileName);
@@ -90,11 +90,10 @@ void menu(){
     "__________________________________________________________________________________________\n"
     "*                                             **Main Menu**                              *\n"
     "*  1. Display File Metadata                                                              *\n"
-    "*  2. Normalize Audio File                                                               *\n"
-    "*  3. Add Echo to Audio File                                                             *\n"
-    "*  4. Add Gain Adjustment to Audio File                                                  *\n"
-    "*  5. Quit Program                                                                       *\n"
-    "* Please make a choice 1-5.                                                              *\n"
+    "*  2. Add Echo to Audio File                                                             *\n"
+    "*  3. Add Gain Adjustment to Audio File                                                  *\n"
+    "*  4. Quit Program                                                                       *\n"
+    "* Please make a choice 1-4.                                                              *\n"
     "__________________________________________________________________________________________\n";
 
     while(exit){
@@ -131,12 +130,9 @@ void menuSelector(int userChoice){
             std::cout << "Metadata function called" << std::endl;
             break;
         case 2:
-            std::cout << "Normalize function called" << std::endl;
-            break;
-        case 3:
             std::cout << "Echo function called" << std::endl;
             break;
-        case 4:
+        case 3:
             std::cout << "Gain function called" << std::endl;
             break;
     }
