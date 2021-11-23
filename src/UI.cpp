@@ -119,7 +119,9 @@ void inputValidation(int userChoice){
             std::cin.ignore(100, '\n');
         }
     if(userChoice < minMenuChoice || userChoice > maxMenuChoice){
-        std::cout << "Please enter a value between 1 and 5 from the menu." << std::endl;
+        std::cout << "Please enter a value between "
+        << minMenuChoice <<" and " << maxMenuChoice << " 4 from the menu."
+        << std::endl;
     }
 }
 
@@ -127,13 +129,28 @@ void inputValidation(int userChoice){
 void menuSelector(int userChoice){
     switch(userChoice) {
         case 1:
-            std::cout << "Metadata function called" << std::endl;
+            // std::cout << wav1 << std::endl; Will need file loaded before this
             break;
         case 2:
             std::cout << "Echo function called" << std::endl;
             break;
         case 3:
-            std::cout << "Gain function called" << std::endl;
+            std::cout << "Please enter a value for gain between 0 and 3"
+            << std::endl;
+
+            bool exit = true;
+            double gain_choice{};
+
+            while(exit){
+            cin >> gainChoice;
+              if(gainChoice > 3 || gainChoice < 0){
+                cout << "Please enter a value between 0 and 3" << std::endl;
+              }
+              else{
+                exit = false;
+              }
+            }
+            gain(gainChoice);
             break;
     }
 }
