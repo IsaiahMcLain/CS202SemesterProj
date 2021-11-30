@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <stdexcept>
+#include <cstring>
 #include "wav.h"
 #include "tools.h"
 
@@ -28,19 +29,22 @@ int main(int argc, char* argv[])
     if(argc == 2){
         WAV wavfile1;
         wavfile1.loadData(argv[1]);
-        //fileGatherer(argv[1]);
-        std::cout << "Command called where .wav was added" << std::endl;
     }
 
     if(argc == 1){
         std::cout << "Please enter the directory of your file below" << std::endl;
-        //Argvcheck(argv[0]);
+        std::string directory;
+        std::cin >> directory;
+
+        int length = directory.length();
+        char directoryArray [length + 1];
+        strcpy(directoryArray, directory.c_str());
+        //Argvcheck(directoryArray);
+
     }
 
     //ruler();
     startMessage();
-    // std::string fileName = " ";
-    //fileName = fileGatherer(fileName);
     menu();
 
     return 0;
@@ -137,12 +141,12 @@ void debug() {
         wav1.loadData("sampleFiles/yes-8-bit-mono.wav");
         std::cout << wav1;
         //wav1.gain(.5); //dont go much over 3
-        wav1.normalize(); 
+        wav1.normalize();
         //wav1.loPass(0x99); //set the maximium value for any sample
         //wav1.echo();
 	//wav1.compression(.5, .5);
 	wav1.writeData("test.wav");
-}	
+}
 
 //Test purposes only
 //void ruler(){
