@@ -9,43 +9,44 @@
 
 //Prototypes
 void startMessage();
-void menu();
+void menu(WAV& wavfile1, std::string directory);
 void debug(); //put code in here and run with "-d" flag to skip ui menu
 //void ruler(); //Temporary function for formatting purposes
 void inputValidation(int userChoice);
 int choiceSelector(int userchoice);
-void menuSelector(int userChoice);
+void menuSelector(int userChoice, WAV& wavfile1);
+
+extern bool Argvcheck(char const* argv);
 
 //Global Constants
 const int minMenuChoice = 1;
-const int maxMenuChoice = 4;
+const int maxMenuChoice = 5;
 
 int main(int argc, char* argv[])
 {
-    if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'd'){
-         debug();
-         return 0;
-    }
+  WAV wavfile1;
+  std::string directory;
+    // if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'd'){
+    //      debug();
+    //      return 0;
+    // }
     if(argc == 2){
-        WAV wavfile1;
         wavfile1.loadData(argv[1]);
     }
 
     if(argc == 1){
         std::cout << "Please enter the directory of your file below" << std::endl;
-        std::string directory;
         std::cin >> directory;
 
         int length = directory.length();
         char directoryArray [length + 1];
         strcpy(directoryArray, directory.c_str());
-        //Argvcheck(directoryArray);
-
+        Argvcheck(directoryArray);
     }
 
     //ruler();
     startMessage();
-    menu();
+    menu(wavfile1, directory);
 
     return 0;
 }
@@ -55,14 +56,12 @@ void startMessage(){
     std::cout << "Welcome to the CS202 Semester Project Digital Audio Workstation." << std::endl;
     std::cout << std::setw(100) << std::setfill('-') << '-' << std::endl;
     std::cout << "This project enables you to edit your audio files." << std::endl;
-    std::cout << "Please enter the name of your file below. It must be a .wav file." << std::endl;
-    std::cout << "Please include .wav in your filename" << std::endl;
     std::cout << std::setw(100) << std::setfill('*') << '*' << std::endl;
     std::cout << std::endl;
 }
 
 //Presents the menu for the user to select an option from after they have entered their file name
-void menu(){
+void menu(WAV& wavfile1, std::string directory){
     bool exit = true;
     int userChoice{};
     std::string menu =
@@ -71,8 +70,9 @@ void menu(){
     "*  1. Display File Metadata                                                              *\n"
     "*  2. Add Echo to Audio File                                                             *\n"
     "*  3. Add Gain Adjustment to Audio File                                                  *\n"
-    "*  4. Quit Program                                                                       *\n"
-    "* Please make a choice 1-4.                                                              *\n"
+    "*  4. Compress Audio File                                                                *\n"
+    "*  5. Quit Program and Save File                                                         *\n"
+    "* Please make a choice 1-5.                                                              *\n"
     "__________________________________________________________________________________________\n";
 
     while(exit){
@@ -83,10 +83,22 @@ void menu(){
 
             if(userChoice == maxMenuChoice) {
                 exit = false;
+                wavfile1.normalize();
+                std::string saveLocation;
+                std::cout << "Please enter a save location before you go!" << std::endl;
+                std::cout << "Otherwise the file will be saved from where you opended it..."
+                << std::endl;
+                std::cin >> saveLocation;
+
+                if(saveLocation.length() == 0){
+                  saveLocation = directory;
+                }
+
+                wavfile1.writeData(saveLocation);
                 break;
             }
             else {
-                menuSelector(userChoice);
+                menuSelector(userChoice, wavfile1);
             }
         }
 }
@@ -99,23 +111,24 @@ void inputValidation(int userChoice){
         }
     if(userChoice < minMenuChoice || userChoice > maxMenuChoice){
         std::cout << "Please enter a value between "
-        << minMenuChoice <<" and " << maxMenuChoice << " 4 from the menu."
+        << minMenuChoice <<" and " << maxMenuChoice << " from the menu."
         << std::endl;
     }
 }
 
 //Function which includes actual menu selection logic and calls function based on case selected
-void menuSelector(int userChoice){
-  WAV wav1; //For dedugging purposes will be moved
-  wav1.loadData("sampleFiles/yes-8-bit-mono.wav");
+void menuSelector(int userChoice, WAV& wavfile1){
     switch(userChoice) {
         case 1:
-            std::cout << wav1;
+            std::cout << wavfile1;
             break;
+
         case 2:
             std::cout << "Echo function called" << std::endl;
             break;
+
         case 3:
+        {
             std::cout << "Please enter a value for gain between 0 and 3"
             << std::endl;
 
@@ -131,8 +144,14 @@ void menuSelector(int userChoice){
                 exit = false;
               }
             }
-            wav1.gain(gainChoice);
+            wavfile1.gain(gainChoice);
             break;
+        }
+
+        case 4:
+          std::cout << "File has been compressed" << std::endl;
+          wavfile1.compression(0.5,0.5);
+          break;
     }
 }
 
