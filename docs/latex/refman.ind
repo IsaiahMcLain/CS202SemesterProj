@@ -1,7 +1,14 @@
 \begin{theindex}
 
+  \item {/home/kc/Documents/CS-\/202-\/Semester-\/Project-\/F21/src/tools.h}, 
+		\hyperpage{7}
   \item {/home/kc/Documents/CS-\/202-\/Semester-\/Project-\/F21/src/wav.h}, 
 		\hyperpage{7}
+
+  \indexspace
+
+  \item {gain}
+    \subitem {WAV}, \hyperpage{5}
 
   \indexspace
 
@@ -11,7 +18,11 @@
   \indexspace
 
   \item {WAV}, \hyperpage{5}
+    \subitem {gain}, \hyperpage{5}
     \subitem {loadData}, \hyperpage{5}
+    \subitem {writeData}, \hyperpage{6}
   \item {WAV\_HEADER}, \hyperpage{6}
+  \item {writeData}
+    \subitem {WAV}, \hyperpage{6}
 
 \end{theindex}

@@ -33,8 +33,29 @@ private:
 	bool writeSample(int32_t index, int32_t value);
 public:
 	WAV();
-	bool loPass(int32_t max);
-	bool normalize(int32_t max);
+	/**
+	 * The dynamic range of the signal is compressed using a non-linear map of input to output.
+	 * @return bool if successful
+	 * @param cutOff percentage of max value in which all above that cutoff is applied a gain. e.g. if the max value of the data set is 36 and the cutOff is .66
+	 * all data points above 24 and below -24 will have a gain applied.
+	 * @param scale the decimal to apply to the data sets beyond the cutOff.
+	 */
+	bool compression(double cutOff, double scale);
+	/**
+	 * Applies an echo effect to the data
+	 * @return bool if successful
+	 */
+	bool echo();
+	/**
+	 * Lo pass filter that removes all any high intesity values from the sample set.
+	 * @return bool if successful
+	 */
+	bool loPass();
+	/**
+	 * maximizes the amplitude of the final waveform
+	 * @return bool if successful
+	 */
+	bool normalize();
 	/**
 	 * Applies a gain effect to the data
 	 * @return bool if successful

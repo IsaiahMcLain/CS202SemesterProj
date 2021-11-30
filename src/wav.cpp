@@ -3,6 +3,26 @@
 
 WAV::WAV(){}
 
+bool WAV::compression(double cutOff, double scale) {
+	int16_t maxValue = 0;
+	for (int x = 0; x < numSamples; x++ ) {
+		int16_t sample = readSample(x);
+		if (abs(sample) > abs(maxValue))
+			maxValue = sample;
+	}
+	for (int x = 0; x < numSamples; x++) {
+		int16_t sample = readSample(x);
+		if (abs(sample) > abs(maxValue) * cutOff)
+			sample = sample * scale;
+			writeSample(x, sample);
+	}
+	return true;
+}
+
+bool WAV::echo() {
+	return false;
+}
+
 int32_t WAV::readSample(int32_t index) const{
 	if (metaData.bitsPerSample == 16)
 		return dataBytes[(index*2)+1]*0x100+dataBytes[index*2];
@@ -24,23 +44,36 @@ bool WAV::writeSample(int32_t index, int32_t value) {
 	return false;
 }
 
-bool WAV::loPass(int32_t max) {
+bool WAV::loPass() {
+	int16_t maxValue = 0;
+	for (int x = 0; x < numSamples; x++ ) {
+		int16_t sample = readSample(x);
+		if (abs(sample) > abs(maxValue))
+			maxValue = sample;
+	}
 	for (int x = 0; x < numSamples; x++) {
 		int16_t sample = readSample(x);
-		if (sample > abs(max)) writeSample(x, max);
+		if (abs(sample) > abs(maxValue * .75)) writeSample(x, maxValue * .75);
 	}
 	return true;
 }
 
-bool WAV::normalize(int32_t max) {
+bool WAV::normalize() {
 	int16_t maxValue = 0;
-	for (int x = 0; x < metaData.subchunk2Size; x += 2) {
-		int32_t sample = readSample(x);
+	for (int x = 0; x < numSamples; x++) {
+		int16_t sample = readSample(x);
 		if (abs(sample) > abs(maxValue))
 			maxValue = sample;
 	}
-	double scale = max/maxValue;
+	if (metaData.bitsPerSample == 8) {
+	double scale = 300/abs(maxValue);
 	gain(scale);
+	}
+	if (metaData.bitsPerSample == 16) {
+	double scale = 500/abs(maxValue);
+	gain(scale);
+	}
+	
 	return true;
 }
 

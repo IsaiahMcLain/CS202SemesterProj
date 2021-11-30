@@ -3,11 +3,15 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classWAV_ae62dad1081c9938e48fc8d87d8da8254}\label{classWAV_ae62dad1081c9938e48fc8d87d8da8254}} 
-bool {\bfseries lo\+Pass} (int16\+\_\+t)
+bool \mbox{\hyperlink{classWAV_a9838c208c7e04a7be446e9dba6f08cb2}{compression}} (double cut\+Off, double scale)
 \item 
-\mbox{\Hypertarget{classWAV_a1a5c1340ed2a2b365b982a748aa01c70}\label{classWAV_a1a5c1340ed2a2b365b982a748aa01c70}} 
-bool {\bfseries normalize} (int16\+\_\+t)
+bool \mbox{\hyperlink{classWAV_a149e93b01ffecd335721c905e8c82de8}{echo}} ()
+\item 
+\mbox{\Hypertarget{classWAV_a037c37f42d8cb6b89e1bd9a80d8e3716}\label{classWAV_a037c37f42d8cb6b89e1bd9a80d8e3716}} 
+bool {\bfseries lo\+Pass} (int32\+\_\+t max)
+\item 
+\mbox{\Hypertarget{classWAV_a104fe8080dfb464d40d39c7ee5359281}\label{classWAV_a104fe8080dfb464d40d39c7ee5359281}} 
+bool {\bfseries normalize} (int32\+\_\+t max)
 \item 
 bool \mbox{\hyperlink{classWAV_ac52886f240fd21ab02063a0422c3757f}{gain}} (double gain)
 \item 
@@ -24,6 +28,31 @@ uint8\+\_\+t $\ast$ {\bfseries get\+Data\+Bytes} () const
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWAV_a9838c208c7e04a7be446e9dba6f08cb2}\label{classWAV_a9838c208c7e04a7be446e9dba6f08cb2}} 
+\index{WAV@{WAV}!compression@{compression}}
+\index{compression@{compression}!WAV@{WAV}}
+\doxysubsubsection{\texorpdfstring{compression()}{compression()}}
+{\footnotesize\ttfamily bool WAV\+::compression (\begin{DoxyParamCaption}\item[{double}]{cut\+Off,  }\item[{double}]{scale }\end{DoxyParamCaption})}
+
+The dynamic range of the signal is compressed using a non-\/linear map of input to output. \begin{DoxyReturn}{Returns}
+bool if successful 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em cut\+Off} & percentage of max value in which all above that cutoff is applied a gain. e.\+g. if the max value of the data set is 36 and the cut\+Off is .66 all data points above 24 and below -\/24 will have a gain applied. \\
+\hline
+{\em scale} & the decimal to apply to the data sets beyond the cut\+Off. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWAV_a149e93b01ffecd335721c905e8c82de8}\label{classWAV_a149e93b01ffecd335721c905e8c82de8}} 
+\index{WAV@{WAV}!echo@{echo}}
+\index{echo@{echo}!WAV@{WAV}}
+\doxysubsubsection{\texorpdfstring{echo()}{echo()}}
+{\footnotesize\ttfamily bool WAV\+::echo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Applies an echo effect to the data \begin{DoxyReturn}{Returns}
+bool if successful 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classWAV_ac52886f240fd21ab02063a0422c3757f}\label{classWAV_ac52886f240fd21ab02063a0422c3757f}} 
 \index{WAV@{WAV}!gain@{gain}}
 \index{gain@{gain}!WAV@{WAV}}
@@ -35,7 +64,7 @@ bool if successful
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-{\em decimal} & value to scale the data \\
+{\em gain} & decimal value to scale the data \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classWAV_a190247765bac7c536736ebfe0f778cac}\label{classWAV_a190247765bac7c536736ebfe0f778cac}} 

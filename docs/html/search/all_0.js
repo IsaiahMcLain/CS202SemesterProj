@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gain_0',['gain',['../classWAV.html#ac52886f240fd21ab02063a0422c3757f',1,'WAV']]]
+  ['compression_0',['compression',['../classWAV.html#a9838c208c7e04a7be446e9dba6f08cb2',1,'WAV']]]
 ];
