@@ -21,6 +21,7 @@ extern bool Argvcheck(char const* argv);
 //Global Constants
 const int minMenuChoice = 1;
 const int maxMenuChoice = 5;
+const std::string saveLocationG = "default.wav";
 
 int main(int argc, char* argv[])
 {
@@ -85,16 +86,16 @@ void menu(WAV& wavfile1, std::string directory){
                 exit = false;
                 wavfile1.normalize();
                 std::string saveLocation;
-                std::cout << "Please enter a save location before you go!" << std::endl;
-                std::cout << "Otherwise the file will be saved from where you opended it..."
+                std::cout << "Please enter a save file name before you go!" << std::endl;
+                std::cout << "Otherwise the file will have default.wav as name"
                 << std::endl;
                 std::cin >> saveLocation;
 
                 if(saveLocation.length() == 0){
-                  saveLocation = directory;
+                  wavfile1.writeData(saveLocationG);
                 }
-
-                wavfile1.writeData(saveLocation);
+                else
+                  wavfile1.writeData(saveLocation);
                 break;
             }
             else {
