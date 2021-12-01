@@ -29,8 +29,8 @@ private:
 	uint8_t* dataBytes;
 	wav_meta metaData;
 	int32_t numSamples;
-	int32_t readSample(int32_t index) const;
-	bool writeSample(int32_t index, int32_t value);
+	int16_t readSample(int32_t index) const;
+	bool writeSample(int32_t index, int16_t value);
 public:
 	WAV();
 	/**

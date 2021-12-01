@@ -27,10 +27,10 @@ int main(int argc, char* argv[])
 {
   WAV wavfile1;
   std::string directory;
-    // if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'd'){
-    //      debug();
-    //      return 0;
-    // }
+     if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'd'){
+          debug();
+          return 0;
+     }
     if(argc == 2){
         wavfile1.loadData(argv[1]);
     }
@@ -161,9 +161,9 @@ void debug() {
         wav1.loadData("sampleFiles/yes-8-bit-mono.wav");
         std::cout << wav1;
         //wav1.gain(.5); //dont go much over 3
-        wav1.normalize();
-        //wav1.loPass(0x99); //set the maximium value for any sample
-        //wav1.echo();
+        //wav1.normalize();
+        //wav1.loPass(); //set the maximium value for any sample
+        wav1.echo();
 	//wav1.compression(.5, .5);
 	wav1.writeData("test.wav");
 }

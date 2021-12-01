@@ -20,10 +20,26 @@ bool WAV::compression(double cutOff, double scale) {
 }
 
 bool WAV::echo() {
-	return false;
+	int echoSize = metaData.samplesPerSec/2;
+	int numEcho = metaData.subchunk2Size/(echoSize);
+	int16_t buffer[echoSize];
+	for (int x = 0; x < numEcho; x++){
+		if (x % 4 == 0) {
+			for (int y = 0; y < echoSize; y++) {
+				buffer[y] = readSample (y+(x*echoSize));
+			}
+		} else {
+			for (int y = 0; y < echoSize; y++) {
+				buffer[y] = buffer[y]/2;
+				writeSample(y+(echoSize*x), buffer[y]);
+			}
+		}
+
+	}
+	return true;
 }
 
-int32_t WAV::readSample(int32_t index) const{
+int16_t WAV::readSample(int32_t index) const{
 	if (metaData.bitsPerSample == 16)
 		return dataBytes[(index*2)+1]*0x100+dataBytes[index*2];
 	else if (metaData.bitsPerSample == 8)
@@ -31,7 +47,7 @@ int32_t WAV::readSample(int32_t index) const{
 }
 
 
-bool WAV::writeSample(int32_t index, int32_t value) {
+bool WAV::writeSample(int32_t index, int16_t value) {
 	if (metaData.bitsPerSample == 16) {
 		dataBytes[index*2] = (uint8_t)value;
 		dataBytes[(index*2)+1] = (value >> 8);
