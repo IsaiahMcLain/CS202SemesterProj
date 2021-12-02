@@ -44,6 +44,8 @@ int16_t WAV::readSample(int32_t index) const{
 		return dataBytes[(index*2)+1]*0x100+dataBytes[index*2];
 	else if (metaData.bitsPerSample == 8)
 		return dataBytes[index];
+	else
+		return 0;
 }
 
 
