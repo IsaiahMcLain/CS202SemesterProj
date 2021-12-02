@@ -21,7 +21,7 @@ bool WAV::compression(double cutOff, double scale) {
 
 bool WAV::echo() {
 	int echoSize = metaData.samplesPerSec/2;
-	int numEcho = metaData.subchunk2Size/(echoSize);
+	int numEcho = metaData.subchunk2Size/(echoSize*metaData.bitsPerSample/8);
 	int16_t buffer[echoSize];
 	for (int x = 0; x < numEcho; x++){
 		if (x % 4 == 0) {

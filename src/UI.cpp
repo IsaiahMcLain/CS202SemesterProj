@@ -158,7 +158,7 @@ void menuSelector(int userChoice, WAV& wavfile1){
 
 void debug() {
         WAV wav1;
-        wav1.loadData("sampleFiles/yes-8-bit-mono.wav");
+        wav1.loadData("sampleFiles/sample2MB.wav");
         std::cout << wav1;
         //wav1.gain(.5); //dont go much over 3
         //wav1.normalize();
