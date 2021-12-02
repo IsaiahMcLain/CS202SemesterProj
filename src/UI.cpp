@@ -19,7 +19,7 @@ extern bool Argvcheck(char const* argv);
 
 //Global Constants
 const int minMenuChoice = 1;
-const int maxMenuChoice = 5;
+const int maxMenuChoice = 6;
 const std::string saveLocationG = "default.wav";
 
 int main(int argc, char* argv[])
@@ -40,6 +40,7 @@ int main(int argc, char* argv[])
 		char directoryArray [length + 1];
 		strcpy(directoryArray, directory.c_str());
 		Argvcheck(directoryArray);
+		wavfile1.loadData(directory);
 	}
 
 	startMessage();
@@ -62,15 +63,16 @@ void menu(WAV& wavfile1, std::string directory){
 	bool exit = true;
 	int userChoice{};
 	std::string menu =
-	"__________________________________________________________________________________________\n"
+	"___________________________________________________________________________________________________\n"
 	"*						   **Main Menu**				  *\n"
 	"*	1. Display File Metadata								  *\n"
 	"*	2. Add Echo to Audio File								  *\n"
 	"*	3. Add Gain Adjustment to Audio File							  *\n"
 	"*	4. Compress Audio File									  *\n"
-	"*	5. Quit Program and Save File								  *\n"
-	"* Please make a choice 1-5.								  *\n"
-	"__________________________________________________________________________________________\n";
+	"*	5. Add Low Pass Filter to Audio File							  *\n"
+	"*	6. Quit Program and Save File								  *\n"
+	"*       Please make a choice 1-6.								  *\n"
+	"___________________________________________________________________________________________________\n";
 
 	while(exit){
 		std::cout << menu << std::endl;
@@ -140,6 +142,11 @@ void menuSelector(int userChoice, WAV& wavfile1){
 		std::cout << "File has been compressed" << std::endl;
 		wavfile1.compression(0.5,0.5);
 		break;
+
+	case 5:
+		std::cout << "File has add filter applied" << std::endl;
+		wavfile1.loPass();
+		break;
 	}
 }
 
@@ -154,4 +161,3 @@ void debug() {
 	//wav1.compression(.5, .5);
 	wav1.writeData("test.wav");
 }
-
