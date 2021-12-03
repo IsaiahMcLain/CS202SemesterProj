@@ -84,14 +84,18 @@ bool WAV::normalize() {
 			maxValue = sample;
 	}
 	if (metaData.bitsPerSample == 8) {
-	double scale = 300/abs(maxValue);
-	gain(scale);
+		double scale = 300.0/abs(maxValue);
+		std::cout << "Scale: " << scale << std::endl;
+		std::cout << "Max Size: " << maxValue << std::endl;
+		gain(scale);
 	}
 	if (metaData.bitsPerSample == 16) {
-	double scale = 500/abs(maxValue);
-	gain(scale);
+		double scale = 500.0/abs(maxValue);
+		std::cout << "Scale: " << scale << std::endl;
+		std::cout << "Max Size: " << maxValue << std::endl;
+		gain(scale);
 	}
-	
+
 	return true;
 }
 
