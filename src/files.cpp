@@ -2,6 +2,11 @@
 #include <string>
 #include <iostream>
 
+/**
+ * Displays start message to user and asks them to either quit program or continue
+ * @return bool if file is opended corretly
+ * @param argv takes character array from main which is the file name and location
+ */
 bool Argvcheck(char const* argv) {
 
 	std::string Filename(argv);
