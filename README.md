@@ -7,9 +7,9 @@
 # Contributors
 | Author            | Contribution                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| -[Isaiah McLain](https://github.com/McLainIsaiah) |  | Frontend UI and program linking |
+| -[Isaiah McLain](https://github.com/McLainIsaiah) | Frontend UI and program linking |
 | -[Keaton Clark](https://github.com/Keaton-Clark) | Backend file i/o and file processing |
-| -[Kurt Stumpf](https://github.com/1102-Stumpf-Kurt) | | Made file i/o and UML Diagram |
+| -[Kurt Stumpf](https://github.com/1102-Stumpf-Kurt) | Made file i/o and UML Diagram |
 
 # Challenges
 The largest challenge of the backend was dealing with the 16 bit-width as the file needed to be read in 8 bit chunks and then converted to 16 bit. This was a roadblock for a significant portion of 
