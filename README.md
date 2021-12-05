@@ -25,5 +25,6 @@ No known missing functionality in the backend processors.
 Incorrect user input doesn't break program however program resets which isn't ideal. Found error when linking the program components together where echo cannot work with any other method. If echo is used on a file by itself it works correctly, however if another method is added to that audio file there will be no audio that plays. This is something to work on in the future of this progject as well. 
 
 # UML Diagram
+![UMLProject Diagram](https://user-images.githubusercontent.com/77941097/144763403-9fa42c02-dd94-4b75-9866-b32541a667b8.jpg)
 
 
