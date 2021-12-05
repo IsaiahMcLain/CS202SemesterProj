@@ -1,0 +1,113 @@
+\hypertarget{classWAV}{}\doxysection{W\+AV Class Reference}
+\label{classWAV}\index{WAV@{WAV}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classWAV_a9838c208c7e04a7be446e9dba6f08cb2}{compression}} (double cut\+Off, double scale)
+\item 
+bool \mbox{\hyperlink{classWAV_a149e93b01ffecd335721c905e8c82de8}{echo}} ()
+\item 
+bool \mbox{\hyperlink{classWAV_a97e12215353ae0bd6aea7dc5895fdbbc}{lo\+Pass}} ()
+\item 
+bool \mbox{\hyperlink{classWAV_a9073578cbae7225a285dd640ddea7ee5}{normalize}} ()
+\item 
+bool \mbox{\hyperlink{classWAV_ac52886f240fd21ab02063a0422c3757f}{gain}} (double gain)
+\item 
+bool \mbox{\hyperlink{classWAV_a190247765bac7c536736ebfe0f778cac}{load\+Data}} (std\+::string file\+Path)
+\item 
+bool \mbox{\hyperlink{classWAV_afcb6c21ccbe860e4e23ed8506d85eca8}{write\+Data}} (std\+::string file\+Path)
+\item 
+\mbox{\Hypertarget{classWAV_a826189f024203dd28af8a910fade8ed8}\label{classWAV_a826189f024203dd28af8a910fade8ed8}} 
+\mbox{\hyperlink{structWAV__HEADER}{wav\+\_\+meta}} {\bfseries get\+Meta\+Data} () const
+\item 
+\mbox{\Hypertarget{classWAV_a132c17acedb02e0665551432850e1a35}\label{classWAV_a132c17acedb02e0665551432850e1a35}} 
+uint8\+\_\+t $\ast$ {\bfseries get\+Data\+Bytes} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWAV_a9838c208c7e04a7be446e9dba6f08cb2}\label{classWAV_a9838c208c7e04a7be446e9dba6f08cb2}} 
+\index{WAV@{WAV}!compression@{compression}}
+\index{compression@{compression}!WAV@{WAV}}
+\doxysubsubsection{\texorpdfstring{compression()}{compression()}}
+{\footnotesize\ttfamily bool W\+A\+V\+::compression (\begin{DoxyParamCaption}\item[{double}]{cut\+Off,  }\item[{double}]{scale }\end{DoxyParamCaption})}
+
+The dynamic range of the signal is compressed using a non-\/linear map of input to output. \begin{DoxyReturn}{Returns}
+bool if successful 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em cut\+Off} & percentage of max value in which all above that cutoff is applied a gain. e.\+g. if the max value of the data set is 36 and the cut\+Off is .66 all data points above 24 and below -\/24 will have a gain applied. \\
+\hline
+{\em scale} & the decimal to apply to the data sets beyond the cut\+Off. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWAV_a149e93b01ffecd335721c905e8c82de8}\label{classWAV_a149e93b01ffecd335721c905e8c82de8}} 
+\index{WAV@{WAV}!echo@{echo}}
+\index{echo@{echo}!WAV@{WAV}}
+\doxysubsubsection{\texorpdfstring{echo()}{echo()}}
+{\footnotesize\ttfamily bool W\+A\+V\+::echo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Applies an echo effect to the data \begin{DoxyReturn}{Returns}
+bool if successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWAV_ac52886f240fd21ab02063a0422c3757f}\label{classWAV_ac52886f240fd21ab02063a0422c3757f}} 
+\index{WAV@{WAV}!gain@{gain}}
+\index{gain@{gain}!WAV@{WAV}}
+\doxysubsubsection{\texorpdfstring{gain()}{gain()}}
+{\footnotesize\ttfamily bool W\+A\+V\+::gain (\begin{DoxyParamCaption}\item[{double}]{gain }\end{DoxyParamCaption})}
+
+Applies a gain effect to the data \begin{DoxyReturn}{Returns}
+bool if successful 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em gain} & decimal value to scale the data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWAV_a190247765bac7c536736ebfe0f778cac}\label{classWAV_a190247765bac7c536736ebfe0f778cac}} 
+\index{WAV@{WAV}!loadData@{loadData}}
+\index{loadData@{loadData}!WAV@{WAV}}
+\doxysubsubsection{\texorpdfstring{loadData()}{loadData()}}
+{\footnotesize\ttfamily bool W\+A\+V\+::load\+Data (\begin{DoxyParamCaption}\item[{std\+::string}]{file\+Path }\end{DoxyParamCaption})}
+
+Loads the meta data into the struct and the data into the 8 bit int array 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & direct or relative path to the .wav file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWAV_a97e12215353ae0bd6aea7dc5895fdbbc}\label{classWAV_a97e12215353ae0bd6aea7dc5895fdbbc}} 
+\index{WAV@{WAV}!loPass@{loPass}}
+\index{loPass@{loPass}!WAV@{WAV}}
+\doxysubsubsection{\texorpdfstring{loPass()}{loPass()}}
+{\footnotesize\ttfamily bool W\+A\+V\+::lo\+Pass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Lo pass filter that removes all any high intesity values from the sample set. \begin{DoxyReturn}{Returns}
+bool if successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWAV_a9073578cbae7225a285dd640ddea7ee5}\label{classWAV_a9073578cbae7225a285dd640ddea7ee5}} 
+\index{WAV@{WAV}!normalize@{normalize}}
+\index{normalize@{normalize}!WAV@{WAV}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily bool W\+A\+V\+::normalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+maximizes the amplitude of the final waveform \begin{DoxyReturn}{Returns}
+bool if successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWAV_afcb6c21ccbe860e4e23ed8506d85eca8}\label{classWAV_afcb6c21ccbe860e4e23ed8506d85eca8}} 
+\index{WAV@{WAV}!writeData@{writeData}}
+\index{writeData@{writeData}!WAV@{WAV}}
+\doxysubsubsection{\texorpdfstring{writeData()}{writeData()}}
+{\footnotesize\ttfamily bool W\+A\+V\+::write\+Data (\begin{DoxyParamCaption}\item[{std\+::string}]{file\+Path }\end{DoxyParamCaption})}
+
+Writes the data from the struct and 8 bit int array to the provided file 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & direct or relative path to the .wav file to be made or changed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/isaiah/\+C\+S202/\+C\+S-\/202-\/\+Semester-\/\+Project-\/\+F21/src/wav.\+h\item 
+/home/isaiah/\+C\+S202/\+C\+S-\/202-\/\+Semester-\/\+Project-\/\+F21/src/wav.\+cpp\end{DoxyCompactItemize}
