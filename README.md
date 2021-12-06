@@ -4,6 +4,12 @@
 ![.wav format](http://soundfile.sapp.org/doc/WaveFormat/wav-sound-format.gif)
 
 
+# Instructions to Start Program
+Make can be used to automatically compile and run program. If user wishes to open file at same time of running program use the command ./SemesterProject filename.wav. Can use just the command make or can use make SemesterProject. 
+
+Challenge folder is not needed to run program, it is there only to contain GUI code that has not been implemented yet, everything needed is in src and samepleFiles and the makefile in the main folder. 
+
+
 # Contributors
 | Author            | Contribution                                                                |
 | ----------------- | ------------------------------------------------------------------ |
